@@ -12,7 +12,7 @@ import (
 const (
 	// acceptHeader is the GitHub Integrations Preview Accept header.
 	acceptHeader = "application/vnd.github.machine-man-preview+json"
-	apiBaseURL   = "https://api.github.com"
+	apiBaseURL   = os.Getenv("API_URL")
 )
 
 // Transport provides a http.RoundTripper by wrapping an existing
