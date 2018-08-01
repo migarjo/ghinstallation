@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"strconv"
 	"time"
 
@@ -47,7 +48,7 @@ func NewAppsTransport(tr http.RoundTripper, integrationID int, privateKey []byte
 	t := &AppsTransport{
 		tr:            tr,
 		integrationID: integrationID,
-		BaseURL:       apiBaseURL,
+		BaseURL:       os.Getenv("API_URL"),
 		Client:        &http.Client{Transport: tr},
 	}
 	var err error

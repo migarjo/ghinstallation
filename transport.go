@@ -5,15 +5,14 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"sync"
 	"time"
-	"os"
 )
 
 const (
 	// acceptHeader is the GitHub Integrations Preview Accept header.
 	acceptHeader = "application/vnd.github.machine-man-preview+json"
-	apiBaseURL   = os.Getenv("API_URL")
 )
 
 // Transport provides a http.RoundTripper by wrapping an existing
@@ -71,7 +70,7 @@ func New(tr http.RoundTripper, integrationID, installationID int, privateKey []b
 		tr:             tr,
 		integrationID:  integrationID,
 		installationID: installationID,
-		BaseURL:        apiBaseURL,
+		BaseURL:        os.Getenv("API_URL"),
 		Client:         &http.Client{Transport: tr},
 		mu:             &sync.Mutex{},
 	}
